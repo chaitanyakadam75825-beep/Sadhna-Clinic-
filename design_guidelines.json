@@ -1,0 +1,43 @@
+{
+  "app_name": "साधना क्लिनिक (Sadhana Clinic) OPD & Queue Manager",
+  "theme": "emerald-teal and slate professional medical",
+  "typography": {
+    "heading_font": "Plus Jakarta Sans, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "hierarchy": {
+      "H1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-extrabold",
+      "H2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-bold",
+      "H3": "text-xl sm:text-2xl font-semibold",
+      "H4": "text-lg sm:text-xl font-semibold",
+      "body": "text-base leading-relaxed"
+    }
+  },
+  "colors": {
+    "primary": "#0F766E",
+    "primary_dark": "#115E59",
+    "secondary": "#0D9488",
+    "accent": "#14B8A6",
+    "background": "#F8FAFC",
+    "surface": "#FFFFFF",
+    "text_dark": "#0F172A",
+    "text_muted": "#64748B",
+    "forbidden_color": "#1B93A4"
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-white/80 border border-slate-200/60 shadow-lg",
+    "card_style": "bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all p-6",
+    "badge_marathi": "text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200"
+  },
+  "image_urls": {
+    "stethoscope_hero": "https://images.unsplash.com/photo-1655913197692-012897652d13?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzB8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBheXVydmVkaWMlMjBkb2N0b3IlMjBjbGluaWMlMjBtZWRpY2FsJTIwY29uc3VsdGF0aW9uJTIwc3RldGhvc2NvcGV8ZW58MHx8fHwxNzkxMTEyMzg3fDA&ixlib=rb-4.1.0&q=85",
+    "clinic_interior": "https://images.unsplash.com/photo-1659019479789-4dd5dbdc2cb1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzB8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjBheXVydmVkaWMlMjBkb2N0b3IlMjBjbGluaWMlMjBtZWRpY2FsJTIwY29uc3VsdGF0aW9uJTIwc3RldGhvc2NvcGV8ZW58MHx8fHwxNzkxMTEyMzg3fDA&ixlib=rb-4.1.0&q=85"
+  },
+  "universal_guidelines_for_main_agent": [
+    "You tend to converge toward generic outputs. Avoid this: make creative, distinctive frontends.",
+    "DO NOT use dark colors as gradients. Use solid professional medical teal/emerald palette.",
+    "Always use modern button styles like pill-shaped or rounded buttons with smooth hover transitions.",
+    "NEVER use AI assistant emoji characters like 🤖🧠💭💡🔮🎯 for icons.",
+    "All interactive and key informational elements MUST include a data-testid attribute.",
+    "Ensure .js/.jsx files are structured cleanly with Tailwind CSS and Lucide React icons."
+  ]
+}
