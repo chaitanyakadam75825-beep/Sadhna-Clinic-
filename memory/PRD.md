@@ -28,6 +28,7 @@ Build a production-ready, full-stack Clinic Queue & Digital OPD Management Web A
 - Added protected desk and doctor portals, queue actions, walk-ins, balance collection, delay controls.
 - Added prescription pad with print/save flow and phone-based records.
 - Added responsive clinic visual system and required test IDs on user-facing controls.
+- Added short-lived signed role tokens so staff and doctor mutations are protected server-side, not only in the UI.
 
 ## Prioritized backlog
 - P0: Verify all core patient, desk, doctor, and records journeys in browser and API tests.
