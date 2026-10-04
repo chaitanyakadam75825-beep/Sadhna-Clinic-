@@ -1,0 +1,36 @@
+{
+  "summary": "Iteration 5 regression after DoctorBoard empty-state fix. 14/14 backend pytest cases pass; full browser E2E (book → UPI verify → tracker → desk status transitions → balance collect → +15 delay → doctor pad save prescription → walk-in → records lookup) passes. Doctor route no longer crashes with empty active-consultation payload — renders the English/Marathi notice as expected.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Booking confirmation", "issues": ["Marathi phrase 'नोंदणी झाली' renders with a stray replacement character (���) in the eyebrow text — likely a mojibake in App.js source; the records page renders the same word correctly, so only the Confirmation component is affected."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results_iteration5.xml"
+  ],
+  "action_items": [
+    "Fix the mojibake in the Confirmation component eyebrow (App.js line ~31) — replace the broken 'नोंदणी ���ाली' with proper Devanagari 'नोंदणी झाली'."
+  ],
+  "critical_code_review_comments": [
+    "server.py is tight but uses jwt exp as timestamp float — acceptable since PyJWT parses it, but prefer datetime for clarity.",
+    "Frontend App.js is a monolith (~43 dense one-liners). Readable now but hard to maintain; splitting Booking/Desk/Doctor/Tracker/Records into separate files would help.",
+    "No `_id` leaks confirmed — clean() helper and projection consistently strip Mongo id."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py"
+  ],
+  "success_rate": {"backend": "100% (14/14)", "frontend": "100% (all critical flows pass)"},
+  "test_credentials": "Desk PIN 1122, Doctor PIN 3344 (from /app/memory/test_credentials.md).",
+  "seed_data_creation": "Created TEST Iter5 Patient (phone 9876500055) on next-Tuesday morning slot, carried through to completed+prescription, plus TEST Walkin5 (9876500066). Multiple earlier TEST_* appointments created by prior iterations may still be in Mongo.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Priority DoctorBoard empty-state fix verified. Backend regression suite now self-contained (uses dynamic next-weekday dates, JWT-aware, no hard-coded 2026-03-04). Only remaining nit is the Devanagari mojibake in the booking Confirmation eyebrow.",
+  "rca of the issue": "Previous crash root cause: GET /api/active-consultation returns {} when no in_consultation record exists. Original code tested `!active` (false for {}), so it attempted active.token_number.replace(...). Current App.js line 39 now guards with `!active?.id?<Notice...>` and renders the notice safely. Verified live by hitting /doctor with no active patient."
+}
