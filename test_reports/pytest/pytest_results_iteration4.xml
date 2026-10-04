@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="3" time="1.016" timestamp="2026-10-04T11:24:00.496343+00:00" hostname="agent-env-50a2f508-ba2d-4268-b3bb-2c7063afb939"><testcase classname="tests.backend_test" name="test_schedule_rules" time="0.335" /><testcase classname="tests.backend_test" name="test_booking_payment_queue_and_records_flow" time="0.061"><failure message="assert 409 == 200&#10; +  where 409 = &lt;Response [409]&gt;.status_code">backend/tests/backend_test.py:24: in test_booking_payment_queue_and_records_flow
+    assert create.status_code == 200
+E   assert 409 == 200
+E    +  where 409 = &lt;Response [409]&gt;.status_code</failure></testcase><testcase classname="tests.backend_test" name="test_pin_verification_and_error_json" time="0.060"><failure message="AssertionError: assert {'ok': True, ...pe': 'bearer'} == {'ok': True}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Left contains 2 more items:&#10;  {'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGluaWMtc3RhZmYiLCJyb2xlIjoic3RhZmYiLCJpYXQiOjE3OTExMTMwNDEsImV4cCI6MTc5MTExMzY0MS40MzMxNzV9.Twx6CbnaYR0t7sLRATADCBDidv8gAw7haVH59o2MPu4',&#10;   'token_type': 'bearer'}&#10;  &#10;  Full diff:...&#10;  &#10;  ...Full output truncated (5 lines hidden), use '-vv' to show">backend/tests/backend_test.py:45: in test_pin_verification_and_error_json
+    assert requests.post(f"{BASE_URL}/api/staff/verify", json={"pin": "1122"}).json() == {"ok": True}
+E   AssertionError: assert {'ok': True, ...pe': 'bearer'} == {'ok': True}
+E     
+E     Omitting 1 identical items, use -vv to show
+E     Left contains 2 more items:
+E     {'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGluaWMtc3RhZmYiLCJyb2xlIjoic3RhZmYiLCJpYXQiOjE3OTExMTMwNDEsImV4cCI6MTc5MTExMzY0MS40MzMxNzV9.Twx6CbnaYR0t7sLRATADCBDidv8gAw7haVH59o2MPu4',
+E      'token_type': 'bearer'}
+E     
+E     Full diff:...
+E     
+E     ...Full output truncated (5 lines hidden), use '-vv' to show</failure></testcase></testsuite></testsuites>
