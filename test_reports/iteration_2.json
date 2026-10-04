@@ -1,0 +1,22 @@
+{
+  "summary": "Regression testing found the previous React child crash is resolved, but booking remains blocked by a frontend payload omission.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [{"endpoint": "/api/appointments", "issue": "Regression test using fixed historical slot receives expected 409 because slot is already occupied."}]
+  },
+  "frontend_issues": {
+    "ui_bugs": [{"component": "Booking form", "issue": "Valid-looking booking submission displays Field required and never reaches payment. The date picker updates local date state, but form payload omits appointment_date, causing backend Pydantic 422.", "selector": "[data-testid=\"continue-payment-button\"]", "priority": "HIGH"}],
+    "integration_issues": [{"flow": "Create appointment -> payment", "issue": "Payment QR, verification, WhatsApp confirmation, and tracker cannot be reached from UI until appointment_date is included in POST payload.", "affected_selectors": ["[data-testid=\"appointment-date-input\"]", "[data-testid=\"continue-payment-button\"]", "[data-testid=\"upi-qr-code\"]"]}],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results_iteration2.xml"],
+  "action_items": ["Include appointment_date: date in the booking POST payload or synchronize date into form state; then rerun all booking, desk, doctor, and tracker UI flows."],
+  "critical_code_review_comments": ["Booking state keeps appointment date outside form and book() posts form directly, guaranteeing a 422 on every UI submission."],
+  "updated_files": ["/app/test_reports/iteration_2.json"],
+  "success_rate": {"backend": "67%", "frontend": "20%"},
+  "seed_data_creation": "No new seed data created during this iteration.",
+  "retest_needed": true,
+  "should_call_test_agent_after_fix": true,
+  "context_for_next_testing_agent": "Public API root, schedule rules, and PIN verification passed. Controlled mobile UI reproduction confirms no React crash, but booking POST omits appointment_date and returns structured 422. Downstream UI flows remain untested until fixed.",
+  "rca of the issue": "Booking uses date state for the date input while form state contains patient_name, phone, batch, time_slot, and visit_type only. book() posts form unchanged, so FastAPI/Pydantic rejects the missing appointment_date. apiError correctly normalizes the structured detail, preventing the former React runtime crash but exposing the underlying payload bug."
+}
